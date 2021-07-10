@@ -1,2 +1,2 @@
 # colormizer
-![node-current](https://img.shields.io/node/v/colormizer?style=plastic)
+![npm](https://img.shields.io/npm/v/colormizer)
