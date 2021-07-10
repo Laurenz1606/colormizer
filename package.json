@@ -1,0 +1,25 @@
+{
+  "name": "colormizer",
+  "version": "0.0.1",
+  "description": "A tool for anything you need to do with Colors(Conversions, random and more)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laurenz1606/colormizer.git"
+  },
+  "keywords": [
+    "Color",
+    "random",
+    "css-colors",
+    "color-conversion"
+  ],
+  "author": "Laurenz1606",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laurenz1606/colormizer/issues"
+  },
+  "homepage": "https://github.com/Laurenz1606/colormizer#readme"
+}
