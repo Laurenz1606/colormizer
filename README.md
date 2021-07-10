@@ -8,8 +8,11 @@
 
 ### Installation
 
-You can install using [npm](https://www.npmjs.com/package/colormizer).
+You can colormizer install using [npm](https://www.npmjs.com/package/colormizer) or [yarn](https://yarnpkg.com/package/colormizer).
 
 ```
 npm install colormizer
+```
+```
+yarn add colormizer
 ```
