@@ -1,6 +1,6 @@
 {
   "name": "colormizer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tool for anything you need to do with Colors(Conversions, random and more)",
   "main": "index.js",
   "scripts": {
