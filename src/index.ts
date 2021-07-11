@@ -44,7 +44,7 @@ const colorRegex = <IColorRegex>{
   hsla: /hsla\(/,
 };
 
-function randomColor(type = "hex", saturation = false): string {
+function randomColor(type: string = "hex", saturation: boolean = false): string {
   if (saturation || type === "rgba" || type === "hsla") {
     if (type === "hex")
       return `#${rndm2DigitHex()}${rndm2DigitHex()}${rndm2DigitHex()}`;
