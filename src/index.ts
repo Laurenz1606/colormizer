@@ -1,16 +1,24 @@
-function rndm8bit() {
+interface IColorRegex {
+  hex: RegExp;
+  rgb: RegExp;
+  rgba: RegExp;
+  hsl: RegExp;
+  hsla: RegExp;
+}
+
+function rndm8bit(): number {
   return Math.floor(Math.random() * 256);
 }
 
-function rndmDegree() {
+function rndmDegree(): number {
   return Math.floor(Math.random() * 361);
 }
 
-function rndmPercent() {
+function rndmPercent(): number {
   return Math.floor(Math.random() * 101);
 }
 
-function rndm2DigitHex() {
+function rndm2DigitHex(): string {
   const hex = "0123456789ABCDEF";
   return (
     hex.charAt(Math.floor(Math.random() * hex.length)) +
@@ -18,10 +26,17 @@ function rndm2DigitHex() {
   );
 }
 
-const map = (val, in_min, in_max, out_min, out_max) =>
-  ((val - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+function map(
+  val: number,
+  in_min: number,
+  in_max: number,
+  out_min: number,
+  out_max: number
+): number {
+  return ((val - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+}
 
-const colorRegex = {
+const colorRegex = <IColorRegex>{
   hex: /#/,
   rgb: /rgb\(/,
   rgba: /rgba\(/,
@@ -29,9 +44,7 @@ const colorRegex = {
   hsla: /hsla\(/,
 };
 
-Object.freeze(colorRegex);
-
-function randomColor(type = "hex", saturation = false) {
+function randomColor(type = "hex", saturation = false): string {
   if (saturation || type === "rgba" || type === "hsla") {
     if (type === "hex")
       return `#${rndm2DigitHex()}${rndm2DigitHex()}${rndm2DigitHex()}`;
@@ -51,9 +64,10 @@ function randomColor(type = "hex", saturation = false) {
     else if (type === "hsl")
       return `hsl(${rndmDegree()}, ${rndmPercent()}%, ${rndmPercent()}%)`;
   }
+  return "";
 }
 
-function convertType(value, to) {
+function convertType(value: string, to: string): string {
   let type = null;
   if (colorRegex.hex.test(value)) type = "hex";
   if (colorRegex.rgb.test(value)) type = "rgb";
@@ -124,9 +138,9 @@ function convertType(value, to) {
       map(parseInt(str3), 0, 100, 0, 1)
     );
     if (to === "hex") {
-      return `#${parseInt(r).toString(16)}${parseInt(g).toString(16)}${parseInt(
-        b
-      ).toString(16)}`;
+      return `#${parseInt(r.toString()).toString(16)}${parseInt(
+        g.toString()
+      ).toString(16)}${parseInt(b.toString()).toString(16)}`;
     } else if (to === "rgb") return `rgb(${r}, ${g}, ${b})`;
     else if (to === "rgba") return `rgba(${r}, ${g}, ${b}, 1)`;
     else if (to === "hsla") return `hsla(${str1}, ${str2}%, ${str3}%, 1)`;
@@ -144,17 +158,18 @@ function convertType(value, to) {
       map(parseInt(str3), 0, 100, 0, 1)
     );
     if (to === "hex") {
-      return `#${parseInt(r).toString(16)}${parseInt(g).toString(16)}${parseInt(
-        b
-      ).toString(16)}`;
+      return `#${parseInt(r.toString()).toString(16)}${parseInt(
+        g.toString()
+      ).toString(16)}${parseInt(b.toString()).toString(16)}`;
     } else if (to === "rgb") return `rgb(${r}, ${g}, ${b})`;
     else if (to === "rgba") return `rgba(${r}, ${g}, ${b}, ${str4})`;
     else if (to === "hsl") return `hsl(${str1}, ${str2}%, ${str3}%)`;
     else return value;
   }
+  return "";
 }
 
-function RGBToHSL(r, g, b) {
+function RGBToHSL(r: number, g: number, b: number): string {
   // Make r, g, and b fractions of 1
   r /= 255;
   g /= 255;
@@ -196,21 +211,21 @@ function RGBToHSL(r, g, b) {
   return "(" + h + ", " + s + "%, " + l + "%";
 }
 
-function HSLToRGB(h, s, l) {
+function hue2rgb(p: number, q: number, t: number): number {
+  if (t < 0) t += 1;
+  if (t > 1) t -= 1;
+  if (t < 1 / 6) return p + (q - p) * 6 * t;
+  if (t < 1 / 2) return q;
+  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  return p;
+}
+
+function HSLToRGB(h: number, s: number, l: number): number[] {
   var r, g, b;
 
   if (s == 0) {
     r = g = b = l; // achromatic
   } else {
-    function hue2rgb(p, q, t) {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1 / 6) return p + (q - p) * 6 * t;
-      if (t < 1 / 2) return q;
-      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-      return p;
-    }
-
     var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
     var p = 2 * l - q;
 

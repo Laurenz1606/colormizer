@@ -1,8 +1,9 @@
 {
   "name": "colormizer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A tool for anything you need to do with Colors(Conversions, random and more)",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +12,7 @@
     "url": "git+https://github.com/Laurenz1606/colormizer.git"
   },
   "keywords": [
-    "Color",
+    "colors",
     "random",
     "css-colors",
     "color-conversion"
@@ -25,5 +26,8 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "engineStrict": true
+  "engineStrict": true,
+  "dependencies": {
+    "@types/node": "^16.3.1"
+  }
 }
