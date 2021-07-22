@@ -12,8 +12,9 @@
 You can colormizer install using [npm](https://www.npmjs.com/package/colormizer) or [yarn](https://yarnpkg.com/package/colormizer).
 
 ```
+//for npm
 npm install colormizer
-```
-```
+
+//for yarn
 yarn add colormizer
 ```

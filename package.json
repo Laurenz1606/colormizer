@@ -2,10 +2,10 @@
   "name": "colormizer",
   "version": "0.0.5",
   "description": "A tool for anything you need to do with Colors(Conversions, random and more)",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "publish": "npm run build && npm publish --access publish"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
     "node": ">=4.0.0"
   },
   "engineStrict": true,
-  "dependencies": {
-    "@types/node": "^16.3.1"
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0"
   }
 }
