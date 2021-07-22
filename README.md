@@ -75,4 +75,19 @@ getRandomColor("hsla"); // -> hsla(191, 7%, 80%, 0.78)
 getRandomColor("hsl", true); // -> hsla(83, 41%, 51%, 0.19)
 ```
 
+### Convert color types
+
+The `convertColor()` function will convert the color format from one type to another (e.g. rgb(10, 187, 65) => hsl(139, 90%, 39%)). The function takes 2 Arguments the original value and the type to convert it to.
+
+```js
+const { convertColor } = require("colormizer");
+
+convertColor("rgb(107, 3, 193)", "hex") // -> #6B03C1
+convertColor("rgb(107, 3, 193)", "rgba") // -> rgba(107, 3, 193, 1)
+convertColor("hsla(17, 61%, 12%, 0.16)", "rgb") // -> rgb(49, 23, 12)
+
+//when only given a color but not a type to convert to it will return the original color
+convertColor("rgb(107, 3, 193)") // -> rgb(107, 3, 193)
+```
+
 
