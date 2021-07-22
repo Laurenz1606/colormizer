@@ -1,11 +1,11 @@
 {
   "name": "colormizer",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "A tool for anything you need to do with Colors(Conversions, random and more)",
   "main": "./dist/index.js",
   "scripts": {
     "build": "gulp build",
-    "publish": "npm run build && npm publish --access publish"
+    "publish": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
