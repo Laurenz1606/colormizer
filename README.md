@@ -90,4 +90,9 @@ convertColor("hsla(17, 61%, 12%, 0.16)", "rgb") // -> rgb(49, 23, 12)
 convertColor("rgb(107, 3, 193)") // -> rgb(107, 3, 193)
 ```
 
+## Coming soon
 
+### Types
+* Hsv
+* Hex 8 digit colors (alpha)
+* Hex 3 digit colors (e.g. #fff)
