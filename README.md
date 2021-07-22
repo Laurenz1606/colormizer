@@ -33,7 +33,7 @@ getColorType("rgba(35, 148, 12, 1)") // -> "rgba"
 getColorType("hsl(56, 17%, 57%)") // -> "hsl"
 getColorType("hsla(187, 98%, 55%, 0.56)") // -> "hsla"
 
-getColorType("HASGAOÖDHJAÖHJÄ") // -> false
+getColorType("Some Invalid Color String") // -> false
 ```
 ### Color regex
 
