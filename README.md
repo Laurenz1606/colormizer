@@ -19,7 +19,7 @@ yarn add colormizer
 ```
 
 ### generate Random Colors
-The `getRandomColor` function will generate a random color string, valid for usage as a css-color. Without any arguments it will return a random Color, formatted as a hex representation. Optional you can pass in an argument for the color type and for the saturation. 
+The `getRandomColor()` function will generate a random color string, valid for usage as a css-color. Without any arguments it will return a random Color, formatted as a hex representation. Optional you can pass in an argument for the color type and for the saturation. 
 ```js
 const { getRandomColor } = require("colormizer")
 
