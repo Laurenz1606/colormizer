@@ -20,7 +20,7 @@ npm install colormizer
 yarn add colormizer
 ```
 
-### Get type of Color
+### Get type of color
 
 The `getColorType()` function will return the format of the color passed in as argument or `false` if the format is invalid. Internally it uses the `colorRegex` object. 
 
@@ -35,7 +35,7 @@ getColorType("hsla(187, 98%, 55%, 0.56)") // -> "hsla"
 
 getColorType("HASGAOÖDHJAÖHJÄ") // -> false
 ```
-### Color Regex
+### Color regex
 
 The `colorRegex` object is an object, with regex to identify a type of color format. 
 * The regex for hex colors is `/#[a-z,A-Z,0-9]{6}\b/`
@@ -63,15 +63,16 @@ The `getRandomColor()` function will generate a random color string, valid for u
 const { getRandomColor } = require("colormizer");
 
 //generate colors without an saturation value
-getRandomColor(); //will return a random hex value -> #11B789
-getRandomColor("rgb"); //will return a random rgb value -> rgb(109, 255, 11)
-getRandomColor("hsl"); //will return a random hsl value -> hsl(204, 20%, 8%)
+getRandomColor(); // -> #11B789
+getRandomColor("hex"); // -> #11B789
+getRandomColor("rgb"); // -> rgb(109, 255, 11)
+getRandomColor("hsl"); // -> hsl(204, 20%, 8%)
 
 //generate colors without an saturation value
-getRandomColor("rgba"); //will return a random rgba value -> rgba(225, 154, 47, 0.26)
-getRandomColor("rgb", true); //will return a random rgba value -> rgba(209, 207, 14, 0.95)
-getRandomColor("hsla"); //will return a random hsla value -> hsla(191, 7%, 80%, 0.78)
-getRandomColor("hsl", true); //will return a random hsla value -> hsla(83, 41%, 51%, 0.19)
+getRandomColor("rgba"); // -> rgba(225, 154, 47, 0.26)
+getRandomColor("rgb", true); // -> rgba(209, 207, 14, 0.95)
+getRandomColor("hsla"); // -> hsla(191, 7%, 80%, 0.78)
+getRandomColor("hsl", true); // -> hsla(83, 41%, 51%, 0.19)
 ```
 
 

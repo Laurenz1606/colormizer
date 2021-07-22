@@ -8,6 +8,7 @@ const {
   rgbtohsl,
   makeFor2DigitHex,
   hsltorgb,
+  formatColorString,
 } = require("./utils");
 
 //regex for colorTypes
@@ -30,7 +31,7 @@ function getColorType(value) {
 }
 
 //convert color between types
-function convertColorString(value, to) {
+function convertColor(value, to) {
   //get type of input color
   const type = getColorType(value);
 
@@ -43,14 +44,14 @@ function convertColorString(value, to) {
 
     //check if convert to rgb or rgba
     if (to === "rgb" || to === "rgba") {
-      return formatString(to, r, g, b);
+      return formatColorString(to, r, g, b);
     }
 
     //check if convert to hsl or hsla
     else if (to === "hsl" || to === "hsla") {
       //get h, s, l values from r, g, b values
       const [h, s, l] = rgbtohsl(r, g, b);
-      return formatString(to, h, s, l);
+      return formatColorString(to, h, s, l);
     }
 
     //when to is incorrect or same return original value
@@ -64,7 +65,7 @@ function convertColorString(value, to) {
 
     //check if convert to hex
     if (to === "hex") {
-      return formatString(
+      return formatColorString(
         "hex",
         makeFor2DigitHex(parseInt(r).toString(16)),
         makeFor2DigitHex(parseInt(g).toString(16)),
@@ -74,14 +75,14 @@ function convertColorString(value, to) {
 
     //check if convert to rgba
     else if (to === "rgba") {
-      return formatString("rgba", r, g, b);
+      return formatColorString("rgba", r, g, b);
     }
 
     //check if convert to hsl or hsla
     else if (to === "hsl" || to === "hsla") {
       //get h, s, l values from r, g, b values
       const [h, s, l] = rgbtohsl(r, g, b);
-      return formatString(to, h, s, l);
+      return formatColorString(to, h, s, l);
     }
 
     //when to is incorrect or same return original value
@@ -99,7 +100,7 @@ function convertColorString(value, to) {
 
     //check if convert to hex
     if (to === "hex") {
-      return formatString(
+      return formatColorString(
         "hex",
         makeFor2DigitHex(parseInt(r).toString(16)),
         makeFor2DigitHex(parseInt(g).toString(16)),
@@ -109,21 +110,21 @@ function convertColorString(value, to) {
 
     //check if convert to rgb
     else if (to === "rgb") {
-      return formatString("rgb", r, g, b);
+      return formatColorString("rgb", r, g, b);
     }
 
     //check if convert to hsl
     else if (to === "hsl") {
       //get h, s, l values from r, g, b values
       const [h, s, l] = rgbtohsl(r, g, b);
-      return formatString("hsl", h, s, l);
+      return formatColorString("hsl", h, s, l);
     }
 
     //check if convert to hsla
     else if (to === "hsla") {
       //get h, s, l values from r, g, b values
       const [h, s, l] = rgbtohsl(r, g, b);
-      return formatString(to, h, s, l, a);
+      return formatColorString(to, h, s, l, a);
     }
 
     //when to is incorrect or same return original value
@@ -150,7 +151,7 @@ function convertColorString(value, to) {
 
       // check if to conervt to hex
       if (to === "hex") {
-        return formatString(
+        return formatColorString(
           "hex",
           makeFor2DigitHex(parseInt(r).toString(16)),
           makeFor2DigitHex(parseInt(g).toString(16)),
@@ -160,13 +161,13 @@ function convertColorString(value, to) {
 
       //else convert to rgb or rgba
       else {
-        return formatString(to, r, g, b);
+        return formatColorString(to, r, g, b);
       }
     }
 
     //check if convert to hsla
     else if (to === "hsla") {
-      return formatString("hsla", h, s, l);
+      return formatColorString("hsla", h, s, l);
     } 
 
     //when to is incorrect or same return original value
@@ -193,7 +194,7 @@ function convertColorString(value, to) {
 
       // check if to conervt to hex
       if (to === "hex") {
-        return formatString(
+        return formatColorString(
           "hex",
           makeFor2DigitHex(parseInt(r).toString(16)),
           makeFor2DigitHex(parseInt(g).toString(16)),
@@ -203,18 +204,18 @@ function convertColorString(value, to) {
 
       // check if to conervt to rgb
       else if(to === "rgb") {
-        return formatString(to, r, g, b);
+        return formatColorString(to, r, g, b);
       }
 
       // check if to conervt to rgba
       else if(to === "rgba") {
-        return formatString(to, r, g, b, a);
+        return formatColorString(to, r, g, b, a);
       }
     }
 
     //check if convert to hsla
     else if (to === "hsl") {
-      return formatString("hsl", h, s, l);
+      return formatColorString("hsl", h, s, l);
     } 
 
     //when to is incorrect or same return original value
@@ -225,29 +226,18 @@ function convertColorString(value, to) {
   else return value
 }
 
-//formats values to correct color string
-function formatString(type, value1, value2, value3, saturation = 1) {
-  if (type === "hex") return `#${value1}${value2}${value3}`;
-  if (type === "rgb") return `rgb(${value1}, ${value2}, ${value3})`;
-  if (type === "rgba")
-    return `rgba(${value1}, ${value2}, ${value3}, ${saturation})`;
-  if (type === "hsl") return `hsl(${value1}, ${value2}%, ${value3}%)`;
-  if (type === "hsla")
-    return `hsla(${value1}, ${value2}%, ${value3}%, ${saturation})`;
-}
-
 //get random color with type and toggleable saturation
 function getRandomColor(type = "hex", saturation = false) {
   if (saturation || type === "rgba" || type === "hsla") {
     if (type === "hex") {
-      return formatString(
+      return formatColorString(
         "hex",
         rndm2DigitHex(),
         rndm2DigitHex(),
         rndm2DigitHex()
       );
     } else if (type === "rgb" || type === "rgba") {
-      return formatString(
+      return formatColorString(
         "rgba",
         rndm8bit(),
         rndm8bit(),
@@ -255,7 +245,7 @@ function getRandomColor(type = "hex", saturation = false) {
         rndmPercent() / 100
       );
     } else if (type === "hsl" || type === "hsla") {
-      return formatString(
+      return formatColorString(
         "hsla",
         rndmDegree(),
         rndmPercent(),
@@ -265,24 +255,24 @@ function getRandomColor(type = "hex", saturation = false) {
     }
   } else {
     if (type === "hex") {
-      return formatString(
+      return formatColorString(
         "hex",
         rndm2DigitHex(),
         rndm2DigitHex(),
         rndm2DigitHex()
       );
     } else if (type === "rgb") {
-      return formatString("rgb", rndm8bit(), rndm8bit(), rndm8bit());
+      return formatColorString("rgb", rndm8bit(), rndm8bit(), rndm8bit());
     } else if (type === "hsl") {
-      return formatString("hsl", rndmDegree(), rndmPercent(), rndmPercent());
+      return formatColorString("hsl", rndmDegree(), rndmPercent(), rndmPercent());
     }
   }
 }
 
+//export modules
 module.exports = {
   colorRegex,
   getColorType,
-  formatString,
   getRandomColor,
-  convertColorString,
+  convertColor,
 };
