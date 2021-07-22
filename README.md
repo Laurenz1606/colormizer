@@ -19,9 +19,9 @@ npm install colormizer
 //for yarn
 yarn add colormizer
 ```
-### generate Random Colors
+### Color Regex
 
-The `colorRegex` Object is an Object, with regex to identify a type of color format. 
+The `colorRegex` object is an object, with regex to identify a type of color format. 
 * The regex for hex colors is `/#[a-z,A-Z,0-9]{6}\b/`
 * The regex for rgb colors is `/rgb\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\)/`
 * The regex for rgba colors is `/rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, [0-1]{1}(.[0-9]{1,2})?\)/`
@@ -29,18 +29,29 @@ The `colorRegex` Object is an Object, with regex to identify a type of color for
 * The regex for hsla colors is `/hsla\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%, [0-1]{1}(.[0-9]{1,2})?\)/`
 
 ```js
-const { colorRegex } = require("colormizer");
+{
+  hex: /#[a-z,A-Z,0-9]{6}\b/,
+  rgb: /rgb\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\)/,
+  rgba: /rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, [0-1]{1}(.[0-9]{1,2})?\)/,
+  hsl: /hsl\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%\)/,
+  hsla: /hsla\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%, [0-1]{1}(.[0-9]{1,2})?\)/,
+}
+```
 
-//generate colors without an saturation value
-getRandomColor(); //will return a random hex value -> #11B789
-getRandomColor("rgb"); //will return a random rgb value -> rgb(109, 255, 11)
-getRandomColor("hsl"); //will return a random hsl value -> hsl(204, 20%, 8%)
+### Get type of Color
 
-//generate colors without an saturation value
-getRandomColor("rgba"); //will return a random rgba value -> rgba(225, 154, 47, 0.26)
-getRandomColor("rgb", true); //will return a random rgba value -> rgba(209, 207, 14, 0.95)
-getRandomColor("hsla"); //will return a random hsla value -> hsla(191, 7%, 80%, 0.78)
-getRandomColor("hsl", true); //will return a random hsla value -> hsla(83, 41%, 51%, 0.19)
+The `getColorType()` function will return the format of the color passed in as argument or `false` if the format is invalid. Internally it uses the `colorRegex` object. 
+
+```js
+const { getColorType } = require("colormizer");
+
+getColorType("#11B789") // -> "hex"
+getColorType("rgb(7, 208, 253)") // -> "rgb"
+getColorType("rgba(35, 148, 12, 1)") // -> "rgba"
+getColorType("hsl(56, 17%, 57%)") // -> "hsl"
+getColorType("hsla(187, 98%, 55%, 0.56)") // -> "hsla"
+
+getColorType("HASGAOÖDHJAÖHJÄ") // -> false
 ```
 
 ### Generate random colors
