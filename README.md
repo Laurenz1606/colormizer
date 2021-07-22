@@ -6,10 +6,9 @@
 [![NPM](https://nodei.co/npm/colormizer.png)](https://www.npmjs.com/package/colormizer)
 
 ## Usage
-
 ### Installation
 
-You can colormizer install using [npm](https://www.npmjs.com/package/colormizer) or [yarn](https://yarnpkg.com/package/colormizer).
+You can install colormizer using [npm](https://www.npmjs.com/package/colormizer) or [yarn](https://yarnpkg.com/package/colormizer).
 
 ```
 //for npm
