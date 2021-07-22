@@ -44,6 +44,7 @@ The `colorRegex` object is an object, with regex to identify a type of color for
 * The regex for hsl colors is `/hsl\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%\)/`
 * The regex for hsla colors is `/hsla\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%, [0-1]{1}(.[0-9]{1,2})?\)/`
 
+The object properties are:
 ```js
 {
   hex: /#[a-z,A-Z,0-9]{6}\b/,
