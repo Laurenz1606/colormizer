@@ -68,7 +68,7 @@ getRandomColor("hex"); // -> #11B789
 getRandomColor("rgb"); // -> rgb(109, 255, 11)
 getRandomColor("hsl"); // -> hsl(204, 20%, 8%)
 
-//generate colors without an saturation value
+//generate colors with an saturation value
 getRandomColor("rgba"); // -> rgba(225, 154, 47, 0.26)
 getRandomColor("rgb", true); // -> rgba(209, 207, 14, 0.95)
 getRandomColor("hsla"); // -> hsla(191, 7%, 80%, 0.78)
