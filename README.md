@@ -19,6 +19,22 @@ npm install colormizer
 //for yarn
 yarn add colormizer
 ```
+
+### Get type of Color
+
+The `getColorType()` function will return the format of the color passed in as argument or `false` if the format is invalid. Internally it uses the `colorRegex` object. 
+
+```js
+const { getColorType } = require("colormizer");
+
+getColorType("#11B789") // -> "hex"
+getColorType("rgb(7, 208, 253)") // -> "rgb"
+getColorType("rgba(35, 148, 12, 1)") // -> "rgba"
+getColorType("hsl(56, 17%, 57%)") // -> "hsl"
+getColorType("hsla(187, 98%, 55%, 0.56)") // -> "hsla"
+
+getColorType("HASGAOÖDHJAÖHJÄ") // -> false
+```
 ### Color Regex
 
 The `colorRegex` object is an object, with regex to identify a type of color format. 
@@ -36,22 +52,6 @@ The `colorRegex` object is an object, with regex to identify a type of color for
   hsl: /hsl\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%\)/,
   hsla: /hsla\([0-9]{1,3}, [0-9]{1,3}%, [0-9]{1,3}%, [0-1]{1}(.[0-9]{1,2})?\)/,
 }
-```
-
-### Get type of Color
-
-The `getColorType()` function will return the format of the color passed in as argument or `false` if the format is invalid. Internally it uses the `colorRegex` object. 
-
-```js
-const { getColorType } = require("colormizer");
-
-getColorType("#11B789") // -> "hex"
-getColorType("rgb(7, 208, 253)") // -> "rgb"
-getColorType("rgba(35, 148, 12, 1)") // -> "rgba"
-getColorType("hsl(56, 17%, 57%)") // -> "hsl"
-getColorType("hsla(187, 98%, 55%, 0.56)") // -> "hsla"
-
-getColorType("HASGAOÖDHJAÖHJÄ") // -> false
 ```
 
 ### Generate random colors
