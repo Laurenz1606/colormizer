@@ -95,4 +95,4 @@ convertColor("rgb(107, 3, 193)") // -> rgb(107, 3, 193)
 ### Types
 * Hsv
 * Hex 8 digit colors (alpha)
-* Hex 3 digit colors (e.g. #fff)
+* Hex 3 digit colors (e.g. #FFF)
