@@ -8,7 +8,6 @@ const {
   rgbtohsl,
   makeFor2DigitHex,
   hsltorgb,
-  formatColorString,
 } = require("./utils");
 
 //regex for colorTypes
@@ -38,9 +37,7 @@ function convertColor(value, to) {
   //convert hex color
   if (type === "hex") {
     //convert hex sting to r, g, b, values
-    const r = parseInt("0x" + value.slice(1, 3));
-    const g = parseInt("0x" + value.slice(3, 5));
-    const b = parseInt("0x" + value.slice(5, 7));
+    const [r, g, b] = getColorValues(value);
 
     //check if convert to rgb or rgba
     if (to === "rgb" || to === "rgba") {
@@ -61,7 +58,7 @@ function convertColor(value, to) {
   //convert rgb color
   else if (type === "rgb") {
     //convert rgb string to r, g, b, values
-    const [r, g, b] = value.slice(4).slice(0, -1).replace(/ /g, "").split(",");
+    const [r, g, b] = getColorValues(value);
 
     //check if convert to hex
     if (to === "hex") {
@@ -92,11 +89,7 @@ function convertColor(value, to) {
   //convert rgba color
   else if (type === "rgba") {
     //convert rgb string to r, g, b, values
-    const [r, g, b, a] = value
-      .slice(5)
-      .slice(0, -1)
-      .replace(/ /g, "")
-      .split(",");
+    const [r, g, b, a] = getColorValues(value);
 
     //check if convert to hex
     if (to === "hex") {
@@ -134,12 +127,7 @@ function convertColor(value, to) {
   //convert hsl color
   else if (type === "hsl") {
     //convert hsl string to r, g, b, values
-    const [h, s, l] = value
-      .slice(4)
-      .slice(0, -1)
-      .replace(/ /g, "")
-      .replace(/%/g, "")
-      .split(",");
+    const [h, s, l] = getColorValues(value);
 
     //check if convert to hex, rgb or rgba
     if (to === "hex" || to === "rgb" || to === "rgba") {
@@ -168,7 +156,7 @@ function convertColor(value, to) {
     //check if convert to hsla
     else if (to === "hsla") {
       return formatColorString("hsla", h, s, l);
-    } 
+    }
 
     //when to is incorrect or same return original value
     else return value;
@@ -177,12 +165,7 @@ function convertColor(value, to) {
   //convert hsl color
   else if (type === "hsla") {
     //convert hsl string to r, g, b, values
-    const [h, s, l, a] = value
-      .slice(5)
-      .slice(0, -1)
-      .replace(/ /g, "")
-      .replace(/%/g, "")
-      .split(",");
+    const [h, s, l, a] = getColorValues(value);
 
     //check if convert to hex, rgb or rgba
     if (to === "hex" || to === "rgb" || to === "rgba") {
@@ -203,12 +186,12 @@ function convertColor(value, to) {
       }
 
       // check if to conervt to rgb
-      else if(to === "rgb") {
+      else if (to === "rgb") {
         return formatColorString(to, r, g, b);
       }
 
       // check if to conervt to rgba
-      else if(to === "rgba") {
+      else if (to === "rgba") {
         return formatColorString(to, r, g, b, a);
       }
     }
@@ -216,14 +199,14 @@ function convertColor(value, to) {
     //check if convert to hsla
     else if (to === "hsl") {
       return formatColorString("hsl", h, s, l);
-    } 
+    }
 
     //when to is incorrect or same return original value
     else return value;
   }
 
   //return original when color value is not valid
-  else return value
+  else return value;
 }
 
 //get random color with type and toggleable saturation
@@ -264,9 +247,67 @@ function getRandomColor(type = "hex", saturation = false) {
     } else if (type === "rgb") {
       return formatColorString("rgb", rndm8bit(), rndm8bit(), rndm8bit());
     } else if (type === "hsl") {
-      return formatColorString("hsl", rndmDegree(), rndmPercent(), rndmPercent());
+      return formatColorString(
+        "hsl",
+        rndmDegree(),
+        rndmPercent(),
+        rndmPercent()
+      );
     }
   }
+}
+
+//formats values to correct color string
+function formatColorString(type, value1, value2, value3, saturation = 1) {
+  if (type === "hex") return `#${value1}${value2}${value3}`;
+  if (type === "rgb") return `rgb(${value1}, ${value2}, ${value3})`;
+  if (type === "rgba")
+    return `rgba(${value1}, ${value2}, ${value3}, ${saturation})`;
+  if (type === "hsl") return `hsl(${value1}, ${value2}%, ${value3}%)`;
+  if (type === "hsla")
+    return `hsla(${value1}, ${value2}%, ${value3}%, ${saturation})`;
+}
+
+//get number values of an color string
+function getColorValues(value) {
+  const type = getColorType(value);
+  if (type === "hex")
+    return [
+      parseInt("0x" + value.slice(1, 3)),
+      parseInt("0x" + value.slice(3, 5)),
+      parseInt("0x" + value.slice(5, 7)),
+    ];
+  else if (type === "rgb")
+    return value
+      .slice(4)
+      .slice(0, -1)
+      .replace(/ /g, "")
+      .split(",")
+      .map((item) => parseFloat(item));
+  else if (type === "rgba")
+    return value
+      .slice(5)
+      .slice(0, -1)
+      .replace(/ /g, "")
+      .split(",")
+      .map((item) => parseFloat(item));
+  else if (type === "hsl")
+    return value
+      .slice(4)
+      .slice(0, -1)
+      .replace(/ /g, "")
+      .replace(/%/g, "")
+      .split(",")
+      .map((item) => parseFloat(item));
+  else if (type === "hsla")
+    return value
+      .slice(5)
+      .slice(0, -1)
+      .replace(/ /g, "")
+      .replace(/%/g, "")
+      .split(",")
+      .map((item) => parseFloat(item));
+  else return null;
 }
 
 //export modules
@@ -275,4 +316,6 @@ module.exports = {
   getColorType,
   getRandomColor,
   convertColor,
+  formatColorString,
+  getColorValues,
 };
