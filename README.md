@@ -125,6 +125,9 @@ convertColor("rgb(107, 3, 193)") // -> rgb(107, 3, 193)
 ## Coming soon
 
 ### Types
-* Hsv
-* Hex 8 digit colors (alpha)
-* Hex 3 digit colors (e.g. #FFF)
+* hsv color support
+* hexa color support
+* css color keywords support (e.g. aqua)
+
+### Features
+* hex parsing in formatColorString
