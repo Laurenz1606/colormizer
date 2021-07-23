@@ -130,4 +130,4 @@ convertColor("rgb(107, 3, 193)") // -> rgb(107, 3, 193)
 * css color keywords support (e.g. aqua)
 
 ### Features
-* hex parsing in formatColorString
+* number to hex parsing in `formatColorString()`
