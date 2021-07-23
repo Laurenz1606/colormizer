@@ -90,17 +90,6 @@ function hsltorgb(h, s, l) {
   return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
-//formats values to correct color string
-function formatColorString(type, value1, value2, value3, saturation = 1) {
-  if (type === "hex") return `#${value1}${value2}${value3}`;
-  if (type === "rgb") return `rgb(${value1}, ${value2}, ${value3})`;
-  if (type === "rgba")
-    return `rgba(${value1}, ${value2}, ${value3}, ${saturation})`;
-  if (type === "hsl") return `hsl(${value1}, ${value2}%, ${value3}%)`;
-  if (type === "hsla")
-    return `hsla(${value1}, ${value2}%, ${value3}%, ${saturation})`;
-}
-
 module.exports = {
   map,
   rndm8bit,
@@ -110,5 +99,4 @@ module.exports = {
   rgbtohsl,
   hsltorgb,
   makeFor2DigitHex,
-  formatColorString
 };

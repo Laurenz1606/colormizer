@@ -35,6 +35,38 @@ getColorType("hsla(187, 98%, 55%, 0.56)") // -> "hsla"
 
 getColorType("Some Invalid Color String") // -> false
 ```
+
+### Get values of color string
+The `getColorValues()` function will return an array of numbers, which will be parsed by the given color string.
+
+```js
+const { getColorValues } = require("colormizer");
+
+getColorValues("#123456") // -> [ 18, 52, 86 ]
+getColorValues("rgb(72, 131, 221)") // -> [ 72, 131, 221 ]
+getColorValues("rgba(12, 218, 157, 0.3)") // -> [ 12, 218, 157, 0.3 ]
+getColorValues("hsl(133, 19%, 68%") // -> [ 133, 19, 68 ]
+getColorValues("hsla(142, 97%, 92%, 0.37)") // -> [ 142, 97, 92, 0.37 ]
+
+getColorValues("Some invalid color string") // -> null
+```
+
+### Format values to given color String
+The `formatColorString()` function will return a color string, parsed with the given type and values. The Saturation argument is default set to 1. Note: For hex, arguments must be alredy be formatted.
+
+```js
+const { formatColorString } = require("colormizer");
+
+formatColorString("hex", "11", "B7", "89") // -> #11B789
+formatColorString("rgb", 120, 15, 117) // -> rgb(120, 15, 117)
+formatColorString("rgba", 6, 156, 216, 0.3) // -> rgba(6, 156, 216, 0.3)
+formatColorString("hsl", 67, 6, 76) // -> hsl(67, 6%, 76%)
+formatColorString("hsla", 71, 95, 85, 0.25) // -> hsla(71, 95%, 85%, 0.25)
+
+//hsla with no alpha value
+formatColorString("hsla", 71, 95, 85) // -> hsla(71, 95%, 85%, 1)
+```
+
 ### Color regex
 
 The `colorRegex` object is an object, with regex to identify a type of color format. 
